@@ -175,7 +175,7 @@ def get_spline_data(df):
     except Exception as e:
         st.error(f"Error en la interpolación: {e}")
         return None, None, None
-def calculate_mean_recovery(mean_p80, std_p80, spline_func, n_sims=5000):
+def calculate_mean_recovery(mean_p80, std_p80, spline_func, n_sims=15000):
     """Función ligera para calcular solo la recuperación media con protección de límites."""
     np.random.seed(42 + int(mean_p80))
     p80_samples = np.random.normal(mean_p80, std_p80, n_sims)
@@ -524,4 +524,5 @@ with tab_econ:
         """, unsafe_allow_html=True)
         
         if daily_value < 0:
+
             st.warning("⚠️ Atención: La diferencia de recuperación es negativa, lo que resulta en pérdidas económicas proyectadas.")
